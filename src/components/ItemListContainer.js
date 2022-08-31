@@ -1,16 +1,38 @@
 import { useEffect, useState } from "react"
 import ItemList from './ItemList'
+import listadoProductos from '../listadoProductos.json'
 
 
-const ItemListContainer = ( {greeting, TotalObjects} ) => {
+const ItemListContainer = ( {greeting} ) => {
 
     const [raquetas, setRaquetas] = useState([])
 
-    useEffect(
+    //////////////
+    
+    const getRaquetas = (data, time) =>
+        new Promise((resolve, reject) => {
+                setTimeout( () => {
+                    data ? resolve(data) : reject("Error")
+                    }
+                , time)
+            }
+        )
+
+    //////////////
+    useEffect( 
+
         () => {
+            getRaquetas(listadoProductos, 2000)
+                .then( resp => {setRaquetas( resp ) } )
+                .catch(err => console.log(err))
+        }
+        
+    /*  () => {
         fetch('/listadoProductos.json').then(resp =>resp.json()).then(data => setRaquetas( data ))
         }, 
-        []
+        []} 
+        
+    */
     )
 
 

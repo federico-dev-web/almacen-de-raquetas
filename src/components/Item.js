@@ -1,7 +1,7 @@
 
 import ItemCount from './ItemCount'
 
-const Item = ({price, model, brand, weight, head_size, swing_we, image}) => {
+const Item = ({price, model, brand, weight, head_size, swing_we, image, stock, id}) => {
     return (
         <li>
             <div className="card card-side bg-base-100 shadow-xl m-5">
@@ -13,7 +13,7 @@ const Item = ({price, model, brand, weight, head_size, swing_we, image}) => {
                     <p>Swing Weight: {swing_we}</p>
                     <p>precio: {price}</p>
                     <div className="card-actions justify-end">
-                        <ItemCount/>
+                        <ItemCount key={id} stock={stock}/>
                     </div>
                 </div>
             </div>
