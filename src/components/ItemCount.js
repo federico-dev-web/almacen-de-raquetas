@@ -29,9 +29,9 @@ const ItemCount = ( {stock} ) => {
     return (
         <div>
             <div className='contador my-3'>
-                <button onClick={suma} className="btn btn-outline btn-success">+</button>
-                <p stock = {inventario} >{contador}</p>
                 <button onClick={resta} className="btn btn-outline btn-error">-</button>
+                <p stock = {inventario} >{contador}</p>
+                <button onClick={suma} className="btn btn-outline btn-success">+</button>
             </div>
             <button onClick={agregarAlCarrito} className="btn btn-outline">Agregar al carrito</button>
         </div>
