@@ -36,7 +36,7 @@ const ItemDetail = ({id, stock, brand, image, model, price, head_size, length, w
                     <p className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300">Swing weight: {swing_we}</p>
                 </div>
                 <div className="flex items-center border-b border-gray-200 pb-6">
-                    <ItemCount key={id} stock={stock}/>
+                    <ItemCount key={id} initial = {0} stock={stock}/>
                 </div>
             </div>
         </div>

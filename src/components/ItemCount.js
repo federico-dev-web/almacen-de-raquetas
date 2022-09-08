@@ -1,27 +1,27 @@
 import { useState } from "react"
 
-const ItemCount = ( {stock} ) => {
+const ItemCount = ( {stock, initial} ) => {
 
-    const [contador, setContador] = useState(0)
+    const [onAdd, setOnAdd] = useState(initial)
     const [inventario, setInventario] = useState(stock)
     const [itemsEnCarrito, setitemsEnCarrito] = useState(0)
 
     const suma = ()=>{
-        contador < parseInt(inventario) &&  setContador(contador + 1)
+        onAdd < parseInt(inventario) &&  setOnAdd(onAdd + 1)
     }
 
     const resta = ()=>{
-        contador > 0 &&  setContador(contador - 1)
+        onAdd > initial &&  setOnAdd(onAdd - 1)
     }
 
     const agregandoAlCarrito = () => {
-        setInventario(inventario - contador)
-        setitemsEnCarrito(itemsEnCarrito + contador)
-        setContador(0)
+        setInventario(inventario - onAdd)
+        setitemsEnCarrito(itemsEnCarrito + onAdd)
+        setOnAdd(0)
     }
 
     const agregarAlCarrito = ()=>{
-        contador === 0 || agregandoAlCarrito()
+        onAdd === 0 || agregandoAlCarrito()
         }
         /* a completar proximamente... */
     
@@ -30,7 +30,7 @@ const ItemCount = ( {stock} ) => {
         <div>
             <div className='contador my-3'>
                 <button onClick={resta} className="btn btn-outline btn-error">-</button>
-                <p stock = {inventario} >{contador}</p>
+                <p stock = {inventario} >{onAdd}</p>
                 <button onClick={suma} className="btn btn-outline btn-success">+</button>
             </div>
             <button onClick={agregarAlCarrito} className="btn btn-outline">Agregar al carrito</button>

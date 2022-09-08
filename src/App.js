@@ -14,16 +14,16 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <header className="App-header">
-          <NavBar/>
+          <NavBar id="top"/>
         </header>
         <main>
           <Routes>
             <Route path='/' element={<ItemListContainer greeting = 'tenista'/>}/>
             <Route path='/detail/:id' element={<ItemDetailContainer/>}/>
-            <Route path='/raquetas' element={<SitioWebEnConstruccion/>}/>
-            <Route path='/elegi' element={<SitioWebEnConstruccion/>}/>
-            <Route path='/contacto' element={<SitioWebEnConstruccion/>}/>
-            <Route path='/carrito' element={<SitioWebEnConstruccion/>}/>
+            <Route path='/category/raqueta' element={<SitioWebEnConstruccion menu="Raquetas"/>}/>
+            <Route path='/category/elegi' element={<SitioWebEnConstruccion menu="Como elegir"/>}/>
+            <Route path='/category/contacto' element={<SitioWebEnConstruccion menu="Contacto"/>}/>
+            <Route path='/category/carrito' element={<SitioWebEnConstruccion menu="Carrito"/>}/>
           </Routes>
         </main>
         <Footer/>
