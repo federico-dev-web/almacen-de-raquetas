@@ -20,10 +20,10 @@ function App() {
           <Routes>
             <Route path='/' element={<ItemListContainer greeting = 'tenista'/>}/>
             <Route path='/detail/:id' element={<ItemDetailContainer/>}/>
-            <Route path='/category/raqueta' element={<SitioWebEnConstruccion menu="Raquetas"/>}/>
-            <Route path='/category/elegi' element={<SitioWebEnConstruccion menu="Como elegir"/>}/>
-            <Route path='/category/contacto' element={<SitioWebEnConstruccion menu="Contacto"/>}/>
-            <Route path='/category/carrito' element={<SitioWebEnConstruccion menu="Carrito"/>}/>
+            <Route path='/category/:categoryId' element={<ItemListContainer/>}/>
+            <Route path='/elegi' element={<SitioWebEnConstruccion menu="Como elegir"/>}/>
+            <Route path='/contacto' element={<SitioWebEnConstruccion menu="Contacto"/>}/>
+            <Route path='/carrito' element={<SitioWebEnConstruccion menu="Carrito"/>}/>
           </Routes>
         </main>
         <Footer/>

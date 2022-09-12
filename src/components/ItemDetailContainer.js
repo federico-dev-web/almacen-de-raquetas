@@ -26,7 +26,6 @@ const ItemDetailContainer = () => {
                     {setProducto( resp.find((prod) => parseInt(prod.id) === parseInt(idRuta.id)))}
                     )
                 .catch(err => console.log(err))
-                console.log(producto)
         }
 
 /*         () => {
@@ -37,7 +36,7 @@ const ItemDetailContainer = () => {
             )
         } 
 */
-    ,[])
+    ,[idRuta])
 
 
     return (
