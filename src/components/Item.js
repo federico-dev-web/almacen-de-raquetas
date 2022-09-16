@@ -1,5 +1,4 @@
 import {Link} from "react-router-dom"
-import ItemCount from './ItemCount'
 
 const Item = ({price, model, brand, weight, head_size, swing_we, image, stock, id}) => {
     return (
@@ -12,9 +11,7 @@ const Item = ({price, model, brand, weight, head_size, swing_we, image, stock, i
                     <p>Peso: {weight}</p>
                     <p>Swing Weight: {swing_we}</p>
                     <p>precio: {price}</p>
-                    <div className="card-actions justify-end">
-                        <ItemCount key={id} initial={0} stock={stock}/>
-                    </div>
+                    <p>({stock} u. en stock)</p>
                 </div>
             </div>
         </li>
