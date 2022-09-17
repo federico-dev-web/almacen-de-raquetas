@@ -7,27 +7,10 @@ import { Link } from "react-router-dom";
 
 
 const ItemDetail = ({id, stock, brand, image, model, price, head_size, length, weight, tension, balance, beam_width, composition, flex, grip_type, power_lv, swing_sp, swing_we, string_pa}) => {
-    
-    const productoDetallado = {}
-    productoDetallado.id = id
-    productoDetallado.stock = stock
-    productoDetallado.brand= brand
-    productoDetallado.image= image
-    productoDetallado.model= model
-    productoDetallado.price= price
-    productoDetallado.head_size= head_size
-    productoDetallado.length= length
-    productoDetallado.weight= weight
-    productoDetallado.tension= tension
-    productoDetallado.balance= balance
-    productoDetallado.beam_width= beam_width
-    productoDetallado.composition= composition
-    productoDetallado.flex= flex 
-    productoDetallado.grip_type= grip_type
-    productoDetallado.power_lv= power_lv
-    productoDetallado.swing_sp= swing_sp
-    productoDetallado.swing_we= swing_we 
-    productoDetallado.string_pa = string_pa
+
+    const [contadorPadre, setContadorPadre] = useState(0)
+
+    const productoDetallado = {id, stock, brand, image, model, price, head_size, length, weight, tension, balance, beam_width, composition, flex, grip_type, power_lv, swing_sp, swing_we, string_pa}
 
     const {addItem, isInCart /*, removeItem, clear */} = useContext(toExport.CartContext)
 
@@ -36,6 +19,7 @@ const ItemDetail = ({id, stock, brand, image, model, price, head_size, length, w
     const onAdd = (quantity) => { 
         isInCart(id) || addItem(productoDetallado, quantity)
         setMostrarRutaCarrito(false)
+        setContadorPadre(quantity)
     }
 
 
@@ -77,7 +61,10 @@ const ItemDetail = ({id, stock, brand, image, model, price, head_size, length, w
                                 mostrarRutaCarrito ?
                                     (<ItemCount key={id} initial = {0} stock={stock} onAdd = {onAdd}/>) 
                                     :
-                                    (<Link to={`/carrito`}><button className="btn btn-outline bg-green-300 my-3">Ir al carrito</button></Link>)
+                                    (<div>
+                                        <span className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300 mx-5">{contadorPadre} producto/s agregado/s</span>
+                                        <Link to={`/carrito`}><button className="btn btn-outline bg-green-300 my-3">Ir al carrito</button></Link>
+                                    </div>)
                                 }
                             </div>
                         </div>
