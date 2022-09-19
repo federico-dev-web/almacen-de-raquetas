@@ -53,7 +53,6 @@ const ItemDetail = ({id, stock, brand, image, model, price, head_size, length, w
 
     return (
         <div>
-            <button onClick={()=>console.log(cart)} className="btn btn-outline bg-red-300 m-3">print cart</button>
             {brand ? (
                         <div className="my-20 md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4 bg-white">
                         <div className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
