@@ -6,14 +6,14 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Footer from './components/Footer';
 import SitioWebEnConstruccion from './components/SitioWebEnConstruccion';
-import toExport from './context/CartContext';
+import { CartProvider } from './context/CartContext';
 
 
 function App() {
 
   return (
     <div className="App">
-      <toExport.CartProvider>
+      <CartProvider>
         <BrowserRouter>
           <header className="App-header">
             <NavBar id="top"/>
@@ -30,7 +30,7 @@ function App() {
           </main>
           <Footer/>
         </BrowserRouter>
-      </toExport.CartProvider>
+      </CartProvider>
     </div>
   );
 }
