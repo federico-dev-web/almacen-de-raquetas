@@ -11,7 +11,14 @@ const CartProvider = ( {defaultValue = [], children} ) => {
     const addItem = (item, quantity) => { 
         let itemToAdd = {...item}
         itemToAdd.quantity = quantity
-        setCart(cart.concat(itemToAdd))
+        if (isInCart(itemToAdd.id)) {
+            quantity === 0 ? 
+                removeItem(itemToAdd.id)
+                :
+                modifyItem(itemToAdd.id, quantity)
+            } else {
+                quantity && setCart(cart.concat(itemToAdd))
+            }
     }
 
     //Eliminar un item específico
@@ -23,7 +30,7 @@ const CartProvider = ( {defaultValue = [], children} ) => {
     const clear = () => { setCart([]) }
 
     //Verificar si un item está en el carrito
-    const isInCart = (id) => cart.find((el) => parseInt(el.id) === parseInt(id)) ? true : false;
+    const isInCart = (id) => cart.some((el) => parseInt(el.id) === parseInt(id))
 
     //Modificar la cantidad de un item del carrito
     const modifyItem = (id, newQuantity) => {
@@ -47,7 +54,6 @@ const CartProvider = ( {defaultValue = [], children} ) => {
             {children}
         </CartContext.Provider>
     )
-
 }
 
 export { CartProvider, CartContext }

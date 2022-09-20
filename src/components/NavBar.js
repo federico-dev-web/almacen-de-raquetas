@@ -32,7 +32,7 @@ const NavBar = () => {
                     </li>
                     <li><NavLink className={navLinkClass} to={`/elegi`}>Como elegir</NavLink></li>
                     <li><NavLink className={navLinkClass} to={`/contacto`}>Contacto</NavLink></li>
-                    <li><NavLink className={navLinkClass} to={`/carrito`}><CartWidget/></NavLink></li>
+                    <li><NavLink className={navLinkClass} to={`/Cart`}><CartWidget/></NavLink></li>
                 </ul>
             </div>
             <NavLink to={'/'}><p className ="btn btn-ghost normal-case text-xl">Almacen de Raquetas</p></NavLink>
@@ -54,7 +54,7 @@ const NavBar = () => {
                     </li>
                 <li><NavLink className={navLinkClass} to={`/elegi`}>Como elegir</NavLink></li>
                 <li><NavLink className={navLinkClass} to={`/contacto`}>Contacto</NavLink></li>
-                <li><NavLink className={navLinkClass} to={`/carrito`}><CartWidget/></NavLink></li>
+                <li><NavLink className={navLinkClass} to={`/Cart`}><CartWidget/></NavLink></li>
             </ul>
         </div>
         </nav>

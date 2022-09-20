@@ -25,9 +25,9 @@ const CartWidget = () => {
 
 
     return (
-    <div className="flex-row"> 
+    <div className={cartCount===0 ? "hidden" : "flex-row"}> 
         <BsCart4 className= "inline"/>
-        <span className={cartCount===0 ? "hidden" : "badge badge-sm indicator-item mx-3"}>{cartCount}</span>
+        <span className="badge badge-sm indicator-item mx-3">{cartCount}</span>
     </div>
     )
 }

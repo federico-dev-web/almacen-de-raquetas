@@ -6,6 +6,7 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Footer from './components/Footer';
 import SitioWebEnConstruccion from './components/SitioWebEnConstruccion';
+import Cart from './components/Cart';
 import { CartProvider } from './context/CartContext';
 
 
@@ -25,7 +26,7 @@ function App() {
               <Route path='/category/:categoryId' element={<ItemListContainer/>}/>
               <Route path='/elegi' element={<SitioWebEnConstruccion menu="Como elegir"/>}/>
               <Route path='/contacto' element={<SitioWebEnConstruccion menu="Contacto"/>}/>
-              <Route path='/carrito' element={<SitioWebEnConstruccion menu="Carrito"/>}/>
+              <Route path='/Cart' element={<Cart/>}/>
             </Routes>
           </main>
           <Footer/>
