@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 
 
 
+
 const ItemDetail = ({id, stock, brand, image, model, price, head_size, length, weight, tension, balance, beam_width, composition, flex, grip_type, power_lv, swing_sp, swing_we, string_pa}) => {
 
     //Esta funcion va a definir el valor a mostrar en el contador del ItemCount dependiendo si existe en el cart
     //Agrega la posibilidad de modificar la cantidad seleccionada de un producto
     const initial = (id) =>  
-        (cart.find(el => parseInt(el.id) === parseInt(id)) ?
+        (
+            cart.find(el => parseInt(el.id) === parseInt(id)) ?
             cart.find(el => parseInt(el.id) === parseInt(id)).quantity :
             0
         )
@@ -23,18 +25,19 @@ const ItemDetail = ({id, stock, brand, image, model, price, head_size, length, w
     //Objeto que se va agregar al carrito creado a partir de las props
     const productoDetallado = {id, stock, brand, image, model, price, head_size, length, weight, tension, balance, beam_width, composition, flex, grip_type, power_lv, swing_sp, swing_we, string_pa}
 
-    const {cart, addItem, isInCart, removeItem /*, clear */} = useContext(CartContext)
+    const {cart, addItem, isInCart, removeItem, clear, modifyItem} = useContext(CartContext)
 
     //Estado para definir si el ItemCount está visible o no
     const [mostrarRutaCarrito, setMostrarRutaCarrito] = useState(true)
 
-    //Esta funcion agrega un objeto nuevo al cart o modifica la cantidad
+    //Esta funcion se ejecuta cuando el comprador "agrega al carrito", se agrega el item con su cantidad,
+    //se modifica la cantidad o se quita el item en caso en caso de que la cantidad baje a 0
     const onAdd = (quantity) => { 
         if (isInCart(id)) {
             quantity === 0 ? 
                 removeItem(id)
                 :
-                cart.find(el => parseInt(el.id) === parseInt(id)).quantity = quantity
+                modifyItem(id, quantity)
             } else {
                 addItem(productoDetallado, quantity)
             }
@@ -47,6 +50,7 @@ const ItemDetail = ({id, stock, brand, image, model, price, head_size, length, w
     const modificarCantidad = () => { 
         setMostrarRutaCarrito(true)
     }
+
 
 
     // estilo sacado de https://app.tailwinduikit.com/components

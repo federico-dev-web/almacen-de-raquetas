@@ -15,7 +15,9 @@ const CartProvider = ( {defaultValue = [], children} ) => {
     }
 
     //Eliminar un item específico
-    const removeItem = (itemId) => { setCart(cart.filter( el => el.id !== itemId )) }
+    const removeItem = (itemId) => {
+        setCart( cart.filter( el => parseInt(el.id) !== parseInt(itemId) ) )
+    }
 
     //Vaciar el carrito completo
     const clear = () => { setCart([]) }
@@ -23,13 +25,21 @@ const CartProvider = ( {defaultValue = [], children} ) => {
     //Verificar si un item está en el carrito
     const isInCart = (id) => cart.find((el) => parseInt(el.id) === parseInt(id)) ? true : false;
 
+    //Modificar la cantidad de un item del carrito
+    const modifyItem = (id, newQuantity) => {
+        let cart2 = [...cart]
+        cart2.find(el => parseInt(el.id) === parseInt(id)).quantity = newQuantity
+        setCart(cart2)
+    }
+
 
     const context = {
         cart,
         addItem,
         removeItem,
         clear,
-        isInCart
+        isInCart,
+        modifyItem
     }
 
     return (
@@ -39,11 +49,5 @@ const CartProvider = ( {defaultValue = [], children} ) => {
     )
 
 }
-/* 
-const toExport = {
-    CartProvider,
-    CartContext
-}
- */
 
 export { CartProvider, CartContext }

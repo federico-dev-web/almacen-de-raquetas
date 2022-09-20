@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
 const ItemCount = ( {stock, initial, onAdd} ) => {
@@ -26,6 +26,11 @@ const ItemCount = ( {stock, initial, onAdd} ) => {
     const agregarAlCarrito = ()=>{
         agregandoAlCarrito()
     }
+
+    useEffect(() => {
+        setCount(initial)
+    }, [])
+    
 
 
     return (
