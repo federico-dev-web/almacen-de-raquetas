@@ -8,7 +8,6 @@ import Footer from './components/Footer';
 import SitioWebEnConstruccion from './components/SitioWebEnConstruccion';
 import Cart from './components/Cart';
 import { CartProvider } from './context/CartContext';
-import ProbandoFirebase from './components/ProbandoFirebase';
 
 
 function App() {
@@ -27,9 +26,6 @@ function App() {
               <Route path='/category/:categoryId' element={<ItemListContainer/>}/>
               <Route path='/elegi' element={<SitioWebEnConstruccion menu="Como elegir"/>}/>
               <Route path='/contacto' element={<SitioWebEnConstruccion menu="Contacto"/>}/>
-
-              <Route path='/firebase' element={<ProbandoFirebase/>}/>
-
               <Route path='/Cart' element={<Cart/>}/>
             </Routes>
           </main>

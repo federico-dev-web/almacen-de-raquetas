@@ -10,7 +10,7 @@ const Item = ({price, model, brand, weight, head_size, swing_we, image, stock, i
                     <p>Tamaño cabeza: {head_size}</p>
                     <p>Peso: {weight}</p>
                     <p>Swing Weight: {swing_we}</p>
-                    <p>precio: {price}</p>
+                    <p>precio: $ {price}</p>
                     <p>({stock} u. en stock)</p>
                 </div>
             </div>

@@ -23,19 +23,19 @@ const CartProvider = ( {defaultValue = [], children} ) => {
 
     //Eliminar un item específico
     const removeItem = (itemId) => {
-        setCart( cart.filter( el => parseInt(el.id) !== parseInt(itemId) ) )
+        setCart( cart.filter( el => (el.id) !== (itemId) ) )
     }
 
     //Vaciar el carrito completo
     const clear = () => { setCart([]) }
 
     //Verificar si un item está en el carrito
-    const isInCart = (id) => cart.some((el) => parseInt(el.id) === parseInt(id))
+    const isInCart = (id) => cart.some((el) => (el.id) === (id))
 
     //Modificar la cantidad de un item del carrito
     const modifyItem = (id, newQuantity) => {
         let cart2 = [...cart]
-        cart2.find(el => parseInt(el.id) === parseInt(id)).quantity = newQuantity
+        cart2.find(el => (el.id) === (id)).quantity = newQuantity
         setCart(cart2)
     }
 

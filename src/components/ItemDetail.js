@@ -13,8 +13,8 @@ const ItemDetail = ( productoDetallado ) => {
     //Agrega la posibilidad de modificar la cantidad seleccionada de un producto
     const initial = (id) =>  
         (
-            cart.find(el => parseInt(el.id) === parseInt(id)) ?
-            cart.find(el => parseInt(el.id) === parseInt(id)).quantity :
+            cart.find(el => el.id === id) ?
+            cart.find(el => el.id === id).quantity :
             0
         )
     

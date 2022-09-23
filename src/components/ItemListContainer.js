@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import ItemList from './ItemList'
-import listadoProductos from '../listadoProductos.json'
 import { useParams } from "react-router-dom"
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 
 
 const ItemListContainer = ( {greeting} ) => {
@@ -9,31 +9,35 @@ const ItemListContainer = ( {greeting} ) => {
     const [raquetas, setRaquetas] = useState([])
     const idCategoria = useParams()
     //////////////
-    
-    const getRaquetas = (data, time) =>
-    new Promise((resolve, reject) => {
-        setTimeout( () => {
-            data ? resolve(data) : reject("Error")
-            }
-        , time)
+
+    const getRaquetas = () => {
+        const db = getFirestore()
+        const itemCollection = collection( db, 'raquets' )
+        getDocs( itemCollection ).then( snapshot => {
+            setRaquetas( snapshot.docs.map( d => ({id: d.id, ...d.data()}) ) );
+        })
     }
-)
+
+    const getRaquetasByCategory = () => {
+        const db = getFirestore()
+        const itemCollection = collection( db, 'raquets' )
+        const q = query(itemCollection, where('brand', '==', idCategoria.categoryId) )
+        getDocs( q ).then( snapshot => {
+            setRaquetas( snapshot.docs.map( d => ({id: d.id, ...d.data()}) ) );
+        })
+    }
 
 
     //////////////
-    
+
     useEffect( 
         () => {
-            getRaquetas(listadoProductos, 2000)
-                .then( resp => {
-                    ['Head','Babolat','Wilson','Yonex'].includes(idCategoria.categoryId,0) ? 
-                    (
-                        setRaquetas( resp.filter(prod => prod.brand === idCategoria.categoryId) )
-                    ) : (
-                        setRaquetas(resp)
-                    )
-                } )
-                .catch(err => console.log(err));
+            ['Head','Babolat','Wilson','Yonex'].includes(idCategoria.categoryId,0) ? 
+            (
+                getRaquetasByCategory()
+            ) : (
+                getRaquetas()
+            )
         }
     ,[idCategoria])
 
