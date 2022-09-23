@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { CartContext } from '../context/CartContext'
+import {Link} from "react-router-dom"
 
 const ItemCart = ( element ) => {
 
@@ -10,7 +11,9 @@ const ItemCart = ( element ) => {
             <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                 <div className="flex w-2/5"> 
                     <div className="w-20">
-                        <img className="h-24" src= {element.image} alt=""/>
+                        <Link to={`/detail/${element.id}`}>
+                            <img className="h-24" src= {element.image} alt=""/>
+                        </Link>
                     </div>
                     <div className="flex flex-col justify-between ml-4 flex-grow">
                         <span className="font-bold text-sm">{element.brand} {element.model}</span>

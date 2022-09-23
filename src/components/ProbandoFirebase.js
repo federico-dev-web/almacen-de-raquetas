@@ -2,18 +2,25 @@ import { useEffect, useState } from "react"
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 
-export const ProductCard = ( {categoryId, price, description, image} ) => {
+export const ProductCard = ({price, model, brand, weight, head_size, swing_we, image, stock, id}) => {
     return (
-        <div>
-            <li className="text-primary-content">{categoryId}</li>
-            <li className="text-primary-content">{price}</li>
-            <li className="text-primary-content">{description}</li>
-            <img className="w-10" src={image} alt={description}/>
-        </div>
+        <li>
+            <div className="card card-side bg-base-100 shadow-xl m-5">
+                <figure><div to={`/detail/${id}`}><img className='imagenProducto'  src={image} alt="Movie"/></div></figure>
+                <div className="card-body">
+                    <h2 className="card-title">Raqueta {brand} {model}</h2>
+                    <p>Tamaño cabeza: {head_size}</p>
+                    <p>Peso: {weight}</p>
+                    <p>Swing Weight: {swing_we}</p>
+                    <p>precio: {price}</p>
+                    <p>({stock} u. en stock)</p>
+                </div>
+            </div>
+        </li>
     )
 }
 
-const ProbandoFirebase = () => {
+const ProbandoFirebase2 = () => {
 
     const [products, setProducts] = useState([])
 
@@ -25,7 +32,7 @@ const ProbandoFirebase = () => {
 
     const getProducts = () => {
         const db = getFirestore()
-        const itemCollection = collection( db, 'productos' )
+        const itemCollection = collection( db, 'raquets' )
         getDocs( itemCollection ).then( snapshot => {
             setProducts( snapshot.docs.map( d => ({id: d.id, ...d.data()}) ) );
         })
@@ -38,4 +45,4 @@ const ProbandoFirebase = () => {
     </div>
     )
 }
-export default ProbandoFirebase
+export default ProbandoFirebase2
