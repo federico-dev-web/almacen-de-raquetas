@@ -8,9 +8,9 @@ const ItemDetailContainer = () => {
     const idRuta = useParams()
     const [producto, setProducto] = useState([])
 
-    const getProducto = () => {
+    const getProducto = (id) => {
         const db = getFirestore()
-        const docRef = doc(db, "raquets", idRuta.id);
+        const docRef = doc(db, "raquets", id);
         getDoc( docRef ).then( snapshot => {
             setProducto(  {id: snapshot.id, ...snapshot.data()}  )
         })
@@ -18,7 +18,7 @@ const ItemDetailContainer = () => {
 
     useEffect( 
         () => {
-            getProducto()
+            getProducto(idRuta.id)
         }
     ,[idRuta])
 

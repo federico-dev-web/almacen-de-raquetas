@@ -2,6 +2,9 @@ import { Link } from "react-router-dom"
 import { CartContext } from '../context/CartContext';
 import { useContext, useState, useEffect} from 'react'
 import ItemCart from './ItemCart'
+import { addDoc, collection, getFirestore, Timestamp } from "firebase/firestore";
+import Swal from "sweetalert2";
+
 
 
 const Cart = () => {
@@ -21,6 +24,42 @@ const Cart = () => {
         }
         , [cart]
     )
+
+    ///formularios
+    const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
+
+    ///formularios
+
+
+    /////firebase
+    //Mandar ordenes
+
+    const orderHandler = () => { 
+        let order = {
+            nombre: name,
+            Mail: email,
+            telefono: phone,
+            ...cart,
+            date: Timestamp.now(),
+            total: totalMonto
+
+        }
+        const db = getFirestore()
+        const orderCollection = collection(db, "orders")
+        addDoc( orderCollection, order ).then(  ({id}) => {
+                Swal.fire(
+                    'Tu compra ha sido confirmada!',
+                    `El código de tu pedido es : ${id}. Seguí comprando en nuestro sitio.`,
+                    'success'
+                )
+                clear()
+            }   
+        )
+    }
+
+
 
     
     return (
@@ -61,7 +100,16 @@ const Cart = () => {
                                     <span>Total</span>
                                     <span>$ {totalMonto}</span>
                                 </div>
-                                <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">FINALIZAR COMPRA</button>  
+                                <div className="form-control w-full max-w-xs my-5">
+                                    <input onChange={(e)=>{setName(e.target.value)}} type="text" placeholder="nombre" className="input input-bordered w-full max-w-xs"></input>
+                                </div>
+                                <div className="form-control w-full max-w-xs my-5">
+                                    <input onChange={(e)=>{setEmail(e.target.value)}} type="email" placeholder="e-mail" className="input input-bordered w-full max-w-xs"></input>
+                                </div>
+                                <div className="form-control w-full max-w-xs my-5">
+                                    <input onChange={(e)=>{setPhone(e.target.value)}} type="tel" placeholder="telefono" className="input input-bordered w-full max-w-xs"></input>
+                                </div>
+                                <button onClick={orderHandler} disabled={!(name.length&email.length&phone.length)} className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">FINALIZAR COMPRA</button>  
                             </div>
                         </div>
                     </div>

@@ -23,7 +23,7 @@ const ItemCart = ( element ) => {
             <div className="flex justify-center w-1/5">
                 <span className="text-center w-1/5 font-semibold text-sm">{element.quantity}</span>
             </div>
-                <span className="text-center w-1/5 font-semibold text-sm">{element.price}</span>
+                <span className="text-center w-1/5 font-semibold text-sm">$ {element.price}</span>
                 <span className="text-center w-1/5 font-semibold text-sm">$ {parseFloat(element.price)*parseFloat(element.quantity)}</span>
             </div>
         </li>

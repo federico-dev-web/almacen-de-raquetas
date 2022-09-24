@@ -18,10 +18,10 @@ const ItemListContainer = ( {greeting} ) => {
         })
     }
 
-    const getRaquetasByCategory = () => {
+    const getRaquetasByCategory = (categoria) => {
         const db = getFirestore()
         const itemCollection = collection( db, 'raquets' )
-        const q = query(itemCollection, where('brand', '==', idCategoria.categoryId) )
+        const q = query(itemCollection, where('brand', '==', categoria) )
         getDocs( q ).then( snapshot => {
             setRaquetas( snapshot.docs.map( d => ({id: d.id, ...d.data()}) ) );
         })
@@ -34,7 +34,7 @@ const ItemListContainer = ( {greeting} ) => {
         () => {
             ['Head','Babolat','Wilson','Yonex'].includes(idCategoria.categoryId,0) ? 
             (
-                getRaquetasByCategory()
+                getRaquetasByCategory(idCategoria.categoryId)
             ) : (
                 getRaquetas()
             )
